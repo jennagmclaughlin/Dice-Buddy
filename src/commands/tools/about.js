@@ -4,7 +4,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('embed')
+        .setName('about')
         .setDescription('About the bot.'),
     async execute(interaction, client) {
         const embed = new EmbedBuilder()
@@ -17,6 +17,10 @@ module.exports = {
                 url: github,
                 iconURL: jenna_icon,
                 name: 'Jenna'
-            })
+            });
+
+        await interaction.reply({
+            embeds: [embed]
+        });
     }
 }
