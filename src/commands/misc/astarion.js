@@ -6,7 +6,7 @@ const superagent = require('superagent');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('astarion')
-        .setDescription('Grabs an Astarion GIF.'),
+        .setDescription('Grabs an Astarion GIF from Tenor.'),
         async execute (interaction) {
             // deferring reply
             await interaction.deferReply();
