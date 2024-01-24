@@ -6,8 +6,11 @@ const mongoose = require('mongoose');
 
 module.exports = (client) => {
     client.handleEvents = async () => {
+        // grabbing events folder
         const eventFolders = fs.readdirSync(`./src/events`);
+        // for each folder in the events folder, do this...
         for (const folder of eventFolders) {
+            // grabbing the files
             const eventFiles = fs
                 .readdirSync(`./src/events/${folder}`)
                 .filter(file => file.endsWith('.js'));
