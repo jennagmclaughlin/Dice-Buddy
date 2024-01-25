@@ -18,7 +18,7 @@ module.exports = {
             .setAutocomplete(true)
             .setRequired(true)
         ),
-    async autocomplete(interaction, client) {
+    async autocomplete(interaction) {
         // searching for the user's characters
         const userCharacters = await Character.find({ userID: interaction.user.id });
         // grabbing the focused value...what the user typed
@@ -81,13 +81,5 @@ module.exports = {
                     content: `Sorry, something went wrong...`
             });
         }
-
-        // const originalResult = Math.floor(Math.random() * 20) + 1;
-        // const modifier = 5;
-        // const finalResult = originalResult + modifier;
-
-        // await interaction.reply({
-        //     content: `${chosenCharacter} rolled a **${finalResult}** in ${chosenStat}. (${originalResult} + ${modifier} (modifier) = ${finalResult})`
-        // })
     }
 }

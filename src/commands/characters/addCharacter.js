@@ -50,7 +50,10 @@ module.exports = {
         let intelligence = interaction.options.getNumber('intelligence');
         let wisdom = interaction.options.getNumber('wisdom');
         let charisma = interaction.options.getNumber('charisma');
+        // lists out the stats
         const stats = [strength, dexterity, constitution, intelligence, wisdom, charisma];
+        // defines what a valid input for each stat is (null, greater than 0, less than/equal to 30)
+        const isValidInput = [strength, dexterity, constitution, intelligence, wisdom, charisma].every(stat => stat === null || (stat >= 1 && stat <= 30));
 
         // searching if character with inputted name already exists
         let characterProfile = await Character.findOne({ name: name });
@@ -62,10 +65,10 @@ module.exports = {
             if (existingCharacter) {
                 return interaction.reply(`You already have a character named "${name}"!`);
             } else {
-                // if any of the stats are less than or equal to 0 or greater than 30
-                if (stats.some(stat => stat <= 0 || stat > 30)) {
+                // if any of the stats not a valid input
+                if (!isValidInput) {
                     await interaction.reply({
-                        content: `Please enter a stat value greater than 0 and less than 30.`
+                        content: `Please enter a stat value greater than 0 and less than or equal to 30.`
                     });
                 } else {
                     // creating new character profile
@@ -73,12 +76,12 @@ module.exports = {
                         _id: new mongoose.Types.ObjectId(),
                         userID: interaction.user.id,
                         name: name,
-                        strength: strength,
-                        dexterity: dexterity,
-                        constitution: constitution,
-                        intelligence: intelligence,
-                        wisdom: wisdom,
-                        charisma: charisma
+                        strength: strength || 10, // 10 is default value if not provided
+                        dexterity: dexterity || 10,
+                        constitution: constitution || 10,
+                        intelligence: intelligence || 10,
+                        wisdom: wisdom || 10,
+                        charisma: charisma || 10
                     });
                     // saving character to database
                     await characterProfile.save();

@@ -9,7 +9,8 @@ const characterSchema = new mongoose.Schema({
     constitution: Number,
     intelligence: Number,
     wisdom: Number,
-    charisma: Number
+    charisma: Number,
+    image: String
 });
 
 module.exports = mongoose.model('Character', characterSchema, "characters");
