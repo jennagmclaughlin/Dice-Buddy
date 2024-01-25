@@ -13,6 +13,18 @@ module.exports = {
             .setColor(color)
             .setURL(repository)
             .setThumbnail(client.user.displayAvatarURL())
+            .addFields([
+                {
+                    name: 'Created',
+                    value: '1/19/2024',
+                    inline: true
+                },
+                {
+                    name: 'Last Updated',
+                    value: '1/25/2024',
+                    inline: true
+                }
+            ])
             .setAuthor({
                 url: github,
                 iconURL: jenna_icon,
