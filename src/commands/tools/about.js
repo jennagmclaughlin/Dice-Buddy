@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { color, github, repository, jenna_icon } = process.env;
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -18,6 +18,16 @@ module.exports = {
                     ephemeral: true
                 });
             }
+        } else if (interaction.isAutocomplete()) {
+            const { commands } = client;
+            const { commandName } = interaction;
+            const command = commands.get(commandName);
+
+            try {
+                await command.autocomplete(interaction, client);
+            } catch (error) {
+                await console.log(`There was an error with autocomplete commands. ${error}`);
+            }
         }
     }
 }
